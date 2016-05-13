@@ -2,7 +2,7 @@
 
 grammar machine;
 
-<command> = mode | m | color | depth | in | out | up | down | on | off |
+<command> = mode | m | color | depth | up | down | on | off |
             freeze | horizontal | vertical | sweep | left | right | scale | toggle |
             baseline | store | drag | roi;
 
