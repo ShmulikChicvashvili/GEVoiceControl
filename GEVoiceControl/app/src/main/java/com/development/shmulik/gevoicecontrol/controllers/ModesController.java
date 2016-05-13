@@ -3,6 +3,10 @@ package com.development.shmulik.gevoicecontrol.controllers;
 import com.development.shmulik.gevoicecontrol.exceptions.*;
 import com.development.shmulik.gevoicecontrol.exceptions.IllegalStateException;
 import com.development.shmulik.gevoicecontrol.models.Mode;
+import com.development.shmulik.gevoicecontrol.models.modes.ColorMode;
+import com.development.shmulik.gevoicecontrol.models.modes.DoplerMode;
+import com.development.shmulik.gevoicecontrol.models.modes.MMode;
+import com.development.shmulik.gevoicecontrol.models.modes.PWMode;
 import com.development.shmulik.gevoicecontrol.models.modes.TwoDimensionalMode;
 
 import java.util.ArrayList;
@@ -53,7 +57,61 @@ public class ModesController {
         currentModes.remove(foundIndex);
     }
 
+    private void modeCommandActivation(String modeStr, String switchStr) throws CommandUnknownException, ModesCountExceededMaximumException, ModeAlreadyExistException, IllegalStateException, ModeDoesntExistException {
+        Mode m;
+
+        switch (modeStr) {
+            case "color":
+                m = new ColorMode();
+                break;
+            case "dopler":
+                m = new DoplerMode();
+                break;
+            case "m":
+                m = new MMode();
+                break;
+            case "pw":
+                m = new PWMode();
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        switch (switchStr) {
+            case "on":
+                this.activatedMode(m);
+                break;
+            case "off":
+                this.deactivateMode(m);
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+    }
+
     // this method will get nasty real quick :(
-    public void parseCommand(String command) {
+    public void parseCommand(String command) throws CommandUnknownException, ModeAlreadyExistException, ModesCountExceededMaximumException, ModeDoesntExistException, IllegalStateException {
+        String[] commandParts = command.split(" ");
+        String commandNoun = commandParts[0];
+
+        switch (commandNoun) {
+            case "mode":
+                if (commandParts.length != 3)
+                    throw new CommandUnknownException();
+                modeCommandActivation(commandParts[1], commandParts[2]);
+                break;
+            case "depth":
+                break;
+            case "scale":
+                break;
+            case "gain":
+                break;
+            case "sweep":
+                break;
+            case "baseline":
+            default:
+                throw new CommandUnknownException();
+        }
+
     }
 }
