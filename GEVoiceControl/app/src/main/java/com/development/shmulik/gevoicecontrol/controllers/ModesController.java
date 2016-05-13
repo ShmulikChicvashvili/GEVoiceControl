@@ -1,5 +1,7 @@
 package com.development.shmulik.gevoicecontrol.controllers;
 
+import com.development.shmulik.gevoicecontrol.enums.HorizontalDirection;
+import com.development.shmulik.gevoicecontrol.enums.VerticalDirection;
 import com.development.shmulik.gevoicecontrol.exceptions.*;
 import com.development.shmulik.gevoicecontrol.exceptions.IllegalStateException;
 import com.development.shmulik.gevoicecontrol.models.Mode;
@@ -30,7 +32,7 @@ public class ModesController {
         currentModesCount = 1;
     }
 
-    private void activatedMode(Mode m) throws ModesCountExceededMaximumException, ModeAlreadyExistException {
+    private void activateMode(Mode m) throws ModesCountExceededMaximumException, ModeAlreadyExistException {
         if (currentModesCount == MAXIMUM_MODES)
             throw new ModesCountExceededMaximumException();
 
@@ -79,13 +81,128 @@ public class ModesController {
 
         switch (switchStr) {
             case "on":
-                this.activatedMode(m);
+                this.activateMode(m);
                 break;
             case "off":
                 this.deactivateMode(m);
                 break;
             default:
                 throw new CommandUnknownException();
+        }
+    }
+
+    private void depthCommandActivation(String directionStr) throws CommandUnknownException {
+        VerticalDirection verticalDirection;
+
+        switch (directionStr) {
+            case "up":
+                verticalDirection = VerticalDirection.UP;
+                break;
+            case "down":
+                verticalDirection = VerticalDirection.DOWN;
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        for(int i = 0; i < currentModesCount; i++) {
+            try {
+                currentModes.get(i).depth(verticalDirection);
+            } catch (MethodNotSupportedException e) {
+                // for now we do nothing
+            }
+        }
+    }
+
+    private void scaleCommandActivation(String directionStr) throws CommandUnknownException {
+        VerticalDirection verticalDirection;
+
+        switch (directionStr) {
+            case "up":
+                verticalDirection = VerticalDirection.UP;
+                break;
+            case "down":
+                verticalDirection = VerticalDirection.UP;
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        for(int i = 0; i < currentModesCount; i++) {
+            try {
+                currentModes.get(i).scale(verticalDirection);
+            } catch (MethodNotSupportedException e) {
+                // for now we do nothing
+            }
+        }
+    }
+
+    private void gainCommandActivation(String directionStr) throws CommandUnknownException {
+        VerticalDirection verticalDirection;
+
+        switch (directionStr) {
+            case "up":
+                verticalDirection = VerticalDirection.UP;
+                break;
+            case "down":
+                verticalDirection = VerticalDirection.DOWN;
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        for(int i = 0; i < currentModesCount; i++) {
+            try {
+                currentModes.get(i).gain(verticalDirection);
+            } catch (MethodNotSupportedException e) {
+                // for now we do nothing
+            }
+        }
+    }
+
+    private void sweepCommandActivation(String directionStr) throws CommandUnknownException {
+        HorizontalDirection horizontalDirection;
+
+        switch (directionStr) {
+            case "left":
+                horizontalDirection = HorizontalDirection.LEFT;
+                break;
+            case "right":
+                horizontalDirection = HorizontalDirection.RIGHT;
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        for(int i = 0; i < currentModesCount; i++) {
+            try {
+                currentModes.get(i).sweep(horizontalDirection);
+            } catch (MethodNotSupportedException e) {
+                // for now we do nothing
+            }
+        }
+    }
+
+    private void baselineCommandActivation(String directionStr) throws CommandUnknownException {
+        VerticalDirection verticalDirection;
+
+        switch (directionStr) {
+            case "up":
+                verticalDirection = VerticalDirection.UP;
+                break;
+            case "down":
+                verticalDirection = VerticalDirection.DOWN;
+                break;
+            default:
+                throw new CommandUnknownException();
+        }
+
+        for(int i = 0; i < currentModesCount; i++) {
+            try {
+                currentModes.get(i).baseline(verticalDirection);
+            } catch (MethodNotSupportedException e) {
+                // for now we do nothing
+            }
         }
     }
 
@@ -101,14 +218,29 @@ public class ModesController {
                 modeCommandActivation(commandParts[1], commandParts[2]);
                 break;
             case "depth":
+                if(commandParts.length != 2)
+                    throw new CommandUnknownException();
+                depthCommandActivation(commandParts[1]);
                 break;
             case "scale":
+                if(commandParts.length != 2)
+                    throw new CommandUnknownException();
+                scaleCommandActivation(commandParts[1]);
                 break;
             case "gain":
+                if(commandParts.length != 2)
+                    throw new CommandUnknownException();
+                gainCommandActivation(commandParts[1]);
                 break;
             case "sweep":
+                if(commandParts.length != 2)
+                    throw new CommandUnknownException();
+                sweepCommandActivation(commandParts[1]);
                 break;
             case "baseline":
+                if(commandParts.length != 2)
+                    throw new CommandUnknownException();
+                baselineCommandActivation(commandParts[1]);
             default:
                 throw new CommandUnknownException();
         }
