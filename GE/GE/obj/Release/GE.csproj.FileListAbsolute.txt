@@ -1,0 +1,6 @@
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Release\GE.exe.config
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Release\GE.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Release\GE.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Release\GE.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Release\GE.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Release\GE.csprojResolveAssemblyReference.cache

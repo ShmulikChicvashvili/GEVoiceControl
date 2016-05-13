@@ -1,0 +1,5 @@
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\ClientSocketNETPOC\ClientSocketNETPOC\bin\Debug\ClientSocketNETPOC.exe.config
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\ClientSocketNETPOC\ClientSocketNETPOC\bin\Debug\ClientSocketNETPOC.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\ClientSocketNETPOC\ClientSocketNETPOC\bin\Debug\ClientSocketNETPOC.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\ClientSocketNETPOC\ClientSocketNETPOC\obj\Debug\ClientSocketNETPOC.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\ClientSocketNETPOC\ClientSocketNETPOC\obj\Debug\ClientSocketNETPOC.pdb

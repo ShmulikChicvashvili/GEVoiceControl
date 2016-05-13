@@ -1,0 +1,12 @@
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.exe.config
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.exe
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.pdb
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.csprojResolveAssemblyReference.cache
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.exe
+C:\Users\Shmulik\Programming\Work related - Appr\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.exe.config
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.exe
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\bin\Debug\GE.pdb
+C:\Users\Shmulik\Programming\WorkRelated\ProjectGE\ProjectGEImpl\GE\GE\obj\Debug\GE.csprojResolveAssemblyReference.cache

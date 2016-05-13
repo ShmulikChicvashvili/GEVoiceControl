@@ -1,0 +1,15 @@
+#JSGF V1.0;
+
+grammar digits;
+
+<digit> =
+          /10/ hello |
+          /10/ i     |
+          /10/ would |
+          /10/ like  |
+          /10/ pizza |
+          /10/ want  |
+          /10/ ice   |
+          /10/ cream;
+
+public <digits> = <digit>+;
