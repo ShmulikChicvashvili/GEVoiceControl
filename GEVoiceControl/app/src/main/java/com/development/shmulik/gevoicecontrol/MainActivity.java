@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.development.shmulik.gevoicecontrol.controllers.ModesController;
+import com.development.shmulik.gevoicecontrol.exceptions.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.jar.Manifest;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     private SpeechRecognizer recognizer;
 
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
+
+    ModesController modesController = new ModesController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +142,20 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         if (hypothesis == null) return;
         Log.v(LOGGER_KEY, "On result");
         Log.v(LOGGER_KEY, "text: " + hypothesis.getHypstr() + ", score: " + hypothesis.getBestScore());
+
+        try {
+            modesController.parseCommand(hypothesis.getHypstr());
+        } catch (CommandUnknownException e) {
+            e.printStackTrace();
+        } catch (ModeAlreadyExistException e) {
+            e.printStackTrace();
+        } catch (ModesCountExceededMaximumException e) {
+            e.printStackTrace();
+        } catch (ModeDoesntExistException e) {
+            e.printStackTrace();
+        } catch (com.development.shmulik.gevoicecontrol.exceptions.IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
