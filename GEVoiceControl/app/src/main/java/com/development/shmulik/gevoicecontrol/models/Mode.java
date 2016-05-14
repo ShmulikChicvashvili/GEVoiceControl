@@ -8,6 +8,9 @@ import com.development.shmulik.gevoicecontrol.exceptions.MethodNotSupportedExcep
  * Created by Shmulik on 5/13/2016.
  */
 public abstract class Mode {
+
+    private static final String TAG = "shmulik_develop";
+
     public void depth(VerticalDirection verticalDirection) throws MethodNotSupportedException {
         throw new MethodNotSupportedException();
     }

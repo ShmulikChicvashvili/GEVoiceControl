@@ -23,6 +23,7 @@ public class ModesController {
 
     private ArrayList<Mode> currentModes;
     private int currentModesCount;
+    private String currentCommand;
 
     public ModesController() {
         // As I saw in the video the maximum amount of modes supported in the same time are 3
@@ -30,6 +31,7 @@ public class ModesController {
         // 2DMode is always on
         currentModes.add(0, new TwoDimensionalMode());
         currentModesCount = 1;
+        currentCommand = null;
     }
 
     private void activateMode(Mode m) throws ModesCountExceededMaximumException, ModeAlreadyExistException {
@@ -105,7 +107,7 @@ public class ModesController {
                 throw new CommandUnknownException();
         }
 
-        for(int i = 0; i < currentModesCount; i++) {
+        for (int i = 0; i < currentModesCount; i++) {
             try {
                 currentModes.get(i).depth(verticalDirection);
             } catch (MethodNotSupportedException e) {
@@ -128,7 +130,7 @@ public class ModesController {
                 throw new CommandUnknownException();
         }
 
-        for(int i = 0; i < currentModesCount; i++) {
+        for (int i = 0; i < currentModesCount; i++) {
             try {
                 currentModes.get(i).scale(verticalDirection);
             } catch (MethodNotSupportedException e) {
@@ -151,7 +153,7 @@ public class ModesController {
                 throw new CommandUnknownException();
         }
 
-        for(int i = 0; i < currentModesCount; i++) {
+        for (int i = 0; i < currentModesCount; i++) {
             try {
                 currentModes.get(i).gain(verticalDirection);
             } catch (MethodNotSupportedException e) {
@@ -174,7 +176,7 @@ public class ModesController {
                 throw new CommandUnknownException();
         }
 
-        for(int i = 0; i < currentModesCount; i++) {
+        for (int i = 0; i < currentModesCount; i++) {
             try {
                 currentModes.get(i).sweep(horizontalDirection);
             } catch (MethodNotSupportedException e) {
@@ -197,13 +199,39 @@ public class ModesController {
                 throw new CommandUnknownException();
         }
 
-        for(int i = 0; i < currentModesCount; i++) {
+        for (int i = 0; i < currentModesCount; i++) {
             try {
                 currentModes.get(i).baseline(verticalDirection);
             } catch (MethodNotSupportedException e) {
                 // for now we do nothing
             }
         }
+    }
+
+    private void currentCommandActivation(String[] commandsParts) throws IllegalStateException, CommandUnknownException {
+        if (currentCommand == null)
+            return;
+
+        for (String c : commandsParts)
+            switch (currentCommand) {
+                case "depth":
+                    depthCommandActivation(c);
+                    break;
+                case "scale":
+                    scaleCommandActivation(c);
+                    break;
+                case "gain":
+                    gainCommandActivation(c);
+                    break;
+                case "sweep":
+                    sweepCommandActivation(c);
+                    break;
+                case "baseline":
+                    baselineCommandActivation(c);
+                    break;
+                default:
+                    throw new IllegalStateException();
+            }
     }
 
     // this method will get nasty real quick :(
@@ -218,29 +246,18 @@ public class ModesController {
                 modeCommandActivation(commandParts[1], commandParts[2]);
                 break;
             case "depth":
-                if(commandParts.length != 2)
-                    throw new CommandUnknownException();
-                depthCommandActivation(commandParts[1]);
-                break;
             case "scale":
-                if(commandParts.length != 2)
-                    throw new CommandUnknownException();
-                scaleCommandActivation(commandParts[1]);
-                break;
             case "gain":
-                if(commandParts.length != 2)
-                    throw new CommandUnknownException();
-                gainCommandActivation(commandParts[1]);
-                break;
             case "sweep":
-                if(commandParts.length != 2)
-                    throw new CommandUnknownException();
-                sweepCommandActivation(commandParts[1]);
-                break;
             case "baseline":
-                if(commandParts.length != 2)
-                    throw new CommandUnknownException();
-                baselineCommandActivation(commandParts[1]);
+                currentCommand = commandNoun;
+                break;
+            case "up":
+            case "down":
+            case "left":
+            case "right":
+                currentCommandActivation(commandParts);
+                break;
             default:
                 throw new CommandUnknownException();
         }
